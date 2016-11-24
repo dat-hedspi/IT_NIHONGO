@@ -1,0 +1,72 @@
+<% @books.each do |book| %>
+  <%= link_to book do %>
+    <div class="td-invoice-box">
+      <div class="td-invoice-show-top">
+        <span></span>
+        <hr>
+      </div>
+
+      <div class="td-invoice-content">
+        <div class="td-invoice-content-left">
+          <% unless book.picture.url.nil? %>
+            <%= image_tag book.picture.url, class: "width fix-height" %>
+          <% else %>
+            <%= image_tag "books.jpg", class: "width fix-height" %>
+          <% end %>
+        </div>
+        <div class="td-invoice-content-right">
+          <div class="td-line">
+            <i class="fa fa-circle-o td-circle-first td-color"
+              aria-hidden="true"></i>
+            <i class="fa fa-circle-o td-circle-second td-color"
+              aria-hidden="true"></i>
+          </div>
+
+          <div class="td-invoice-content-right-detail">
+            <h2 class="td-invoice-address-top">
+              <%= book.title %>
+            </h2>
+            <p class="td-invoice-address-bottom">
+              <%= book.description %>
+            </p>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <hr>
+
+      <div class="td-invoice-content-2">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <p class="td-text-top text-center">
+            <%= t "home.author" %>
+          </p>
+          <p class="td-text-bottom text-center">
+            <%= book.author %>
+          </p>
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <p class="td-text-top text-center">
+            <%= t "books.new.pages" %>
+          </p>
+          <p class="td-text-bottom text-center">
+            <%= book.pages %>
+          </p>
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <p class="td-text-top text-center">
+            <%= t "books.new.publish_time" %>
+          </p>
+          <p class="td-text-bottom text-center">
+            <%= l book.publish_time, format: :default %>
+          </p>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  <% end %>
+<% end %>
+<%= paginate @books, remote: true %>

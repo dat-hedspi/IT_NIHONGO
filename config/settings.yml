@@ -1,0 +1,5 @@
+default_password: 1
+max_value: 250
+max_page: 6
+size: 9
+default_size: 5

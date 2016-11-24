@@ -1,0 +1,63 @@
+<div class="col-md-6 col-md-offset-3 td-user-edit">
+  <h2 class="text-center">
+    <%= t :edit %>
+    <%= resource_name.to_s.humanize %>
+  </h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+    html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="input">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true,
+        class: "form-control signin-input" %>
+    </div>
+
+    <div class="input">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, class: "form-control signin-input" %>
+    </div>
+
+    <div class="input">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>
+          (<%= @minimum_password_length %> <%= t("devise.validate") %>)
+        </em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off",
+        class: "form-control signin-input" %>
+    </div>
+
+    <div class="input">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off",
+        class: "form-control signin-input" %>
+    </div>
+
+    <div class="input">
+      <%= f.label :avatar %><br />
+      <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %>
+    </div>
+
+    <div class="input">
+      <%= f.label :feelings %><br />
+      <%= f.text_field :feelings, class: "form-control signin-input" %>
+    </div>
+
+    <div class="input">
+      <%= f.label :current_password %> <i><%= t("devise.need") %></i><br />
+      <%= f.password_field :current_password, autocomplete: "off",
+        class: "form-control signin-input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit t "devise.update" %>
+    </div>
+  <% end %>
+
+  <h3 class="text-center"><%= t :cancel_my_account %></h3>
+
+  <%= link_to "Back", :back, class: "btn btn-warning td-back" %>
+</div>

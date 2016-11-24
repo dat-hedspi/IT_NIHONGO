@@ -1,0 +1,45 @@
+<div class="w3-container w3-card-2 w3-white w3-round"><br>
+  <% if current_user.present? %>
+    <% unless current_user.avatar.url.nil? %>
+      <%= image_tag current_user.avatar.url, class: "w3-circle td-img" %>
+    <% else %>
+      <%= image_tag "noprofile.jpg", class: "w3-circle td-img" %>
+    <% end %>
+  <% end %>
+  <span class="w3-right w3-opacity"><%= time_ago_in_words review.created_at %></span>
+  <span class="bold"><%= review.user.username %></span><br>
+  <hr class="w3-clear">
+  <p class="td-white_space"><%= review.content %></p>
+  <div class="w3-row-padding" style="margin:0 -16px">
+    <div class="td-image-auto">
+      <% unless review.book.picture.url.nil? %>
+        <%= image_tag review.book.picture.url, class: "width fix-height" %>
+      <% else %>
+        <%= image_tag "books.jpg", class: "width fix-height" %>
+      <% end %>
+    </div>
+  </div>
+  <button type="button" class="w3-btn td-background w3-margin-bottom">
+    <i class="fa fa-comment"></i> <%= t "home.comment" %>
+  </button>
+  <% if can? [:edit, :update], review %>
+    <%= link_to t(:edit), edit_book_review_path(review.book, review),
+      class: "w3-btn td-background w3-margin-bottom pull-right" %>
+    <%= link_to "Delete", book_review_path(review), class: "pull-right
+      w3-btn td-background w3-margin-bottom margin-right",
+      method: :delete, data: {confirm: "Are you sure??"} %>
+  <% end %>
+  <% unless current_user.nil? %>
+    <div style="margin: 20px 0;" id="td-comment">
+      <%= render "comments/comment_form",book: review.book, review: review,
+        comment: review.user.comments.build %>
+    </div>
+  <% end %>
+  <div class="comments">
+    <% if review.comments.any? %>
+      <% review.comments.each do |comment| %>
+        <%= render "comments/comment", comment: comment %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

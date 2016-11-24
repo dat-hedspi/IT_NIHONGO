@@ -1,0 +1,37 @@
+<h1><%= t "books.index.title" %></h1>
+<%= link_to t("categoryindex.create"), new_admin_book_path,
+  class: "btn btn-primary button" %>
+<table class="table table-bordered table table-striped">
+  <thead>
+    <tr>
+      <th class="col-md-2"><%= t "books.new.title" %></th>
+      <th><%= t "books.new.category" %></th>
+      <th><%= t "books.new.author" %></th>
+      <th class="col-md-2"><%= t "books.new.publish_time" %></th>
+      <th class="col-md-1"><%= t "books.new.pages" %></th>
+      <th><%= t :action %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td class="col-md-2"><%=link_to book.title, admin_book_path(book) %></td>
+        <td><%= book.category.name %></td>
+        <td><%= book.author %></td>
+        <td class="col-md-2"><%= l book.publish_time, format: :short %></td>
+        <td class="col-md-1"><%= book.pages %></td>
+        <td>
+          <%= link_to t("action.edit"), edit_admin_book_path(book),
+            class:"btn btn-warning hvr-pulse-shrink" %>
+        </td>
+        <td>
+          <%= link_to t("destroy.button"), admin_book_path(book),
+            method: :delete, class: "btn btn-danger hvr-pulse-shrink",
+            data: {confirm: t("destroy.confirm")} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @books %>

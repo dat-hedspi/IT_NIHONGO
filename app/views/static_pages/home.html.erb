@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="swiper-container margin-top-50 td-random-view">
+    <div class="swiper-wrapper">
+      <% @book_random.each do |random| %>
+        <%= link_to book_path(random), class: "swiper-slide" do %>
+          <%= image_tag book_image(random), class: "swiper-slide" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <% if current_user %>
+        <div class="w3-card-2 w3-round w3-white">
+          <div class="w3-container">
+            <h4 class="w3-center"><%= t "home.profile" %></h4>
+            <p class="w3-center">
+              <% if current_user.avatar.url %>
+                <%= image_tag current_user.avatar.url, class: "w3-circle td-img-avatar" %>
+              <% else %>
+                <%= image_tag "noprofile.jpg", class: "w3-circle td-img-avatar" %>
+              <% end %>
+            </p>
+            <hr>
+            <p>
+              <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
+              <%= current_user.username %>
+            </p>
+            <p>
+              <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
+              <%= current_user.email %>
+            </p>
+            <p>
+              <i class="fa fa-id-card fa-fw w3-margin-right w3-text-theme"></i>
+              <%= current_user.feelings %>
+            </p>
+          </div>
+        </div>
+        <!-- Accordion -->
+        <div class="w3-card-2 w3-round">
+          <div class="w3-accordion w3-white">
+              <button onclick="myFunction('Demo1')"
+                class="w3-btn-block td-background w3-left-align">
+                <i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
+                <%= t "home.reviews" %>
+              </button>
+              <div id="Demo1" class="w3-accordion-content w3-container">
+                <p><%= t "home.text" %></p>
+              </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="w3-card-2 w3-round">
+        <div class="w3-accordion w3-white">
+            <button onclick="myFunction('Demo1')"
+              class="w3-btn-block td-background w3-left-align">
+              <i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
+              <%= t "home.reviews" %>
+            </button>
+            <div id="Demo1" class="w3-accordion-content w3-container">
+              <p><%= t "home.text" %></p>
+            </div>
+        </div>
+      </div>
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+      <% unless @reviews.blank? %>
+        <% @reviews.each do |review| %>
+          <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+            <div class="td-review-user">
+              <% unless review.user.avatar.url.nil? %>
+                <%= image_tag review.user.avatar.url, class: "w3-circle td-img" %>
+              <% else %>
+                <%= image_tag "noprofile.jpg", class: "w3-circle td-img" %>
+              <% end %>
+              <span class="w3-right w3-opacity">
+                <%= time_ago_in_words review.created_at %>
+              </span>
+              <span class="bold"><%= review.user.username %></span><br>
+            </div>
+            <hr class="w3-clear">
+            <p class="td-white_space"><%= review.content %></p>
+            <div class="w3-row-padding" style="margin:0 -16px">
+              <div class="td-image-auto">
+                <% unless review.book.picture.url.nil? %>
+                  <%= image_tag review.book.picture.url, class: "width fix-height" %>
+                <% else %>
+                  <%= image_tag "books.jpg", class: "width fix-height" %>
+                <% end %>
+              </div>
+            </div>
+            <button type="button" class="w3-btn td-background w3-margin-bottom">
+              <i class="fa fa-comment"></i> <%= t "home.comment" %>
+            </button>
+            <% if can? [:edit, :update], review %>
+              <%= link_to t(:edit), edit_book_review_path(review.book, review),
+                class: "w3-btn td-background w3-margin-bottom pull-right" %>
+              <%= link_to "Delete", book_review_path(review.book, review), class: "pull-right
+                w3-btn td-background w3-margin-bottom margin-right",
+                method: :delete, data: {confirm: "Are you sure??"} %>
+            <% end %>
+            <% unless current_user.nil? %>
+              <div style="margin: 20px 0;" id="td-comment">
+                <%= render "comments/comment_form",book: review.book, review: review,
+                  comment: review.user.comments.build %>
+              </div>
+            <% end %>
+            <div class="comments" id="comments_<%= review.id %>">
+              <% if review.comments.any? %>
+                <%= render review.comments.order_by_time %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div>
+          <h3 class="text-center">
+            <%= t "no_content" %>
+          </h3>
+        </div>
+      <% end %>
+
+    <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card-2 w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p><%= t "home.top_book" %>:</p>
+          <img src="http://www.w3schools.com/css/img_fjords.jpg" alt="Forest"
+            class="width">
+          <p><strong><%= t "home.author" %></strong></p>
+          <p><%= t "home.short_description" %></p>
+          <p>
+            <button class="w3-btn w3-btn-block w3-theme-l4">
+            <%= t "home.detail" %>
+            </button>
+          </p>
+        </div>
+      </div>
+      <br>
+
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+<!-- End Page Container -->
+</div>
+<br>
+
+<script>
+var swiper = new Swiper('.swiper-container', {
+  pagination: '.swiper-pagination',
+  effect: 'coverflow',
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: 'auto',
+  autoplay: 2500,
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplayDisableOnInteraction: false,
+  coverflow: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows : true
+  }
+});
+</script>

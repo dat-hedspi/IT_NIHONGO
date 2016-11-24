@@ -1,0 +1,16 @@
+<div class="td-admin-index">
+  <%= link_to t("categoryindex.create"), new_admin_category_path,
+    class: "btn btn-primary button" %>
+  <table class="table table-hover table-striped">
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <%= render @categories %>
+    </tr>
+  </table>
+  <div class="clearfix"></div>
+</div>

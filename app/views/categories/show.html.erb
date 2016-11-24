@@ -1,0 +1,51 @@
+<div class="td-user-books">
+  <div class="w3-container w3-content w3-margin-top col-sm-4">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding" style="margin:0 -16px">
+
+      <!-- Left Column -->
+      <div class="">
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container">
+            <%= image_tag "books.jpg", class: "width" %>
+            <div class="w3-display-bottomright w3-container w3-text-black">
+              <h2 class="padding-top"><%= @category.name %></h2>
+            </div>
+          </div>
+          <div class="w3-container">
+            <% @categories.each do |f| %>
+              <%= link_to category_path(f) do %>
+                <p>
+                  <i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal">
+                  </i>
+                  <%= f.name %>
+                </p>
+              <% end %>
+            <% end %>
+            <hr>
+          </div>
+          <%= search_form_for @q, url: category_path(@category), class: "navbar-form
+            w3-container" do |f| %>
+            <div class="input-group pull-left" style="width: 80%">
+              <span class="input-group-addon">
+                <i class="fa fa-info nht-icon" aria-hidden="true"></i>
+              </span>
+              <%= f.text_field :title_cont, placeholder: t("books.new.title"),
+                class: "form-control" %>
+            </div>
+
+            <div class="nht-btn-search pull-right">
+              <%= f.submit t(:search), class: "btn btn-primary", remote: true %>
+            </div>
+            <div class="clearfix"></div>
+          <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-8" id="td-categories-show-book">
+    <%= render "book_index" %>
+  </div>
+</div>
