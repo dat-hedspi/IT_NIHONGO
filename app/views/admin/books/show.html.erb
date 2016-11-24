@@ -1,0 +1,20 @@
+<div class="col-sm-10 col-sm-offset-1 padding">
+  <div class="image col-sm-6">
+    <% unless @book.picture.url.nil? %>
+      <%= image_tag @book.picture.url, class:"td-image" %>
+    <% else %>
+      <%= image_tag "books.jpg", class:"td-image" %>
+    <% end %>
+  </div>
+  <div class="content col-sm-6">
+    <h2 class="text-center"><%= @book.title %></h2>
+    <hr>
+    <i class="text-center"><%= @book.author %></i>
+    <hr>
+    <h4><%= @book.description %></h4>
+    <hr>
+    <span class="text-center"><%= @book.publish_time %></span>
+    <span class="text-center"><%= @book.pages %> pages</span>
+  </div>
+  <div class="clearfix"></div>
+</div>

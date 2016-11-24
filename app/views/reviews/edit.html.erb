@@ -1,0 +1,31 @@
+<div class="td-reviews-edit col-xs-8 col-sm-8 col-md-8 col-lg-8
+  col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 padding margin-top">
+  <%= form_for [@review.book, @review] do |review| %>
+    <div class="w3-container w3-card-2 w3-white w3-round"><br>
+      <% unless current_user.avatar.url.nil? %>
+        <%= image_tag current_user.avatar.url, class: "w3-circle td-img" %>
+      <% else %>
+        <%= image_tag "noprofile.jpg", class: "w3-circle td-img" %>
+      <% end %>
+      <span class="w3-right w3-opacity"><%= time_ago_in_words review.object.created_at %></span>
+      <span class="bold"><%= review.object.user.username %></span><br>
+      <hr class="w3-clear">
+      <div id="rating-form" data-score="<%= @review.rating %>">
+        <label><%= t("views.reviews.new.rating") %></label>
+      </div>
+      <%= review.label :content %>
+      <%= review.text_area :content, class: "form-control", id: "text" %>
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="td-image-auto">
+          <% unless review.object.book.picture.url.nil? %>
+            <%= image_tag review.object.book.picture.url, class: "width fix-height" %>
+          <% else %>
+            <%= image_tag "books.jpg", class: "width fix-height" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%= review.submit t(:edit), class: "btn btn-primary" %>
+  <% end %>
+</div>

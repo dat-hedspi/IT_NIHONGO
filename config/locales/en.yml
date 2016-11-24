@@ -1,0 +1,141 @@
+en:
+  datetime: &datetime
+    formats:
+      default: "%d/%m/%Y"
+      short: "%m - %Y"
+      day_month: "%d/%m"
+      long: "%H:%M, %d/%m,%Y"
+
+  date:
+    <<: *datetime
+
+  time:
+    <<: *datetime
+
+  search: Search
+  devise:
+    log_in: Sign in
+    sign_up: Sign up
+    forgot: Forgot your password?
+    not_recevive: Didn't receive confirmation instructions?
+    not_unlock: Didn't receive unlock instructions?
+    omniauth: Sign in with Facebook
+    validate: characters minimum
+    need: (we need your current password to confirm your changes)
+    update: Update
+  title: Book Reviews
+  feature4:
+    more: More
+    national: National
+    partner: Partner
+    personnel: Personnel
+    test: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  td_login: You have an account?
+  td_signup: Don't have an account?
+  facebook: Facebook
+  log_out: Log out
+  cancel_my_account: Cancel my account
+  home:
+    reviews: "My Reviews"
+    events: My Events
+    text: Some other text.
+    photos:  My Photos
+    interests: Interests
+    profile: My Profile
+    test2: test
+    like: Like
+    comment: Comment
+    time: 16 min
+    top_book: Upcoming Events
+    author: Author
+    short_description: Short Description
+    detail: Details
+  footer: Footer
+  header:
+    link: Link
+    logo: Logo
+  bootstrap:
+    toggle: Toggle navigation
+    title: Title
+    dropdown: Dropdown
+  edit: Edit
+  delete: Delete
+  categoryindex:
+    update_success: Update Successfully
+    create_success: Create Successfully
+    delete_success: Delete Successfully
+    create: Create
+    create_category: Create categories
+    cate_new: New Category
+  flash:
+    cate_nil: Category is not exist
+    book_nil: Book is not exist
+  page:
+    categories: Categories
+    books: Books
+  destroy:
+    confirm: Are you sure?
+    button: Destroy
+  books:
+    new:
+      namesite: "Add new book"
+      title: "Title"
+      author: "Author"
+      publish_time: "Publish date"
+      publish_date_form: "Use format: yyyy/mm/dd"
+      category: "Category"
+      category_form: "Please select the category of this book"
+      pages: "Pages"
+      created_at: "Created"
+      updated_at: "Last edit"
+      save: "Save"
+      description: Description
+    index:
+      title: "All book"
+      favorite: "User favorite"
+    edit:
+      title: "Edit"
+    show:
+      favorite: "Mask as Favourite"
+      unfavorite: "Remove Favourite"
+      addtofavorite: "Added to my favorite"
+      removefavorite: "Favorite deleted"
+      markread: "Mark as read"
+      wasread: "Marked as read"
+    create: Create book
+  activerecord:
+    controllers:
+      users:
+        success: "Create user successful!"
+      admin:
+        destroy:
+          success: "Delete successful!"
+          danger: "Delete fail!"
+        update:
+          success: "Update successful!"
+          danger: "Update fails, please try again!"
+      request:
+        create:
+          success: "Send request successful!"
+          danger: "Send request fail!"
+        destroy:
+          success: "Delete request successful!"
+          danger: "Delete request fail!"
+  shared:
+    error_messages:
+      title: "The form contains"
+      error: "error"
+  error:
+    fail: "Sorry, something went wrong"
+    errors: "Error"
+    messengers: "The form contains "
+  action: Action
+  reviews:
+    danger: create reviews fail
+    success: create reviews Successfully
+    create: Create Review
+    update_success: Update reviews Successfully
+    update_danger: Update reviews fail
+  no_content: No review was created
+  load_more: Load More
+  show_less: Show Less

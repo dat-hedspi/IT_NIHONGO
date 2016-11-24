@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title yield :title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: "all",
+      "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+    <%= render "layouts/shim" %>
+  </head>
+  <body class="w3-theme-l5">
+    <%= render "layouts/header" %>
+    <div class="content slide">
+      <div class="container-fluid row">
+        <%= render "layouts/flash" %>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render "layouts/footer" %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

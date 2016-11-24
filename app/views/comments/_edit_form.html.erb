@@ -1,0 +1,9 @@
+<div id="edit-form-box">
+  <%= form_for [@book, @review, @comment], remote: true do |f| %>
+
+    <div class="edit-input-<%= @comment.id %>"><%= f.text_field :content %></div>
+    <%= link_to "Back", root_url, class:"btn btn-danger" %>
+    <%= f.submit :Update, class:"btn btn-primary width10" %>
+
+  <% end %>
+</div>

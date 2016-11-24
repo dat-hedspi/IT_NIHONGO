@@ -1,0 +1,16 @@
+<%= form_for [@book, review] do |f| %>
+  <div class="review_form">
+    <%= render "shared/error_messages", object: review %>
+    <div class="td-review-create">
+      <div id="rating-form">
+        <label><%= t("views.reviews.new.rating") %></label>
+      </div>
+      <%= f.label :content, t("reviews.content") %>
+      <%= f.text_area :content, class: "form-control", id: "text" %>
+    </div>
+  </div>
+  <div class="col-md-2 pull-right">
+    <%= f.submit t("reviews.create"), class: "btn btn-primary margin-top" %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>

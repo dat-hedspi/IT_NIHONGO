@@ -1,0 +1,2 @@
+$("#form-edit-<%= @comment.id %>").html(
+  '<%= j render "comments/edit_form", comment: @comment, book: @book, review: @review %>');

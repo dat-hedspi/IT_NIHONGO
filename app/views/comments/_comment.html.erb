@@ -1,0 +1,25 @@
+<div class="comment" id="form-edit-<%= comment.id %>">
+  <div class="td-comment-title">
+    <% unless comment.user.avatar.url.nil? %>
+      <%= image_tag comment.user.avatar.url, class: "w3-circle td-img" %>
+    <% else %>
+      <%= image_tag "noprofile.jpg", class: "w3-circle td-img" %>
+    <% end %>
+    <span class="bold"><%= link_to comment.user.username %></span>
+    <span class="time-ago-in-words pull-right">
+      <%= time_ago_in_words(comment.created_at) %>
+      <%= t("views.activities.ago") %>
+    </span>
+    <% if comment.user.is_user? (current_user) %>
+      <%= link_to "Delete", book_review_comment_path(comment.review.book,
+        comment.review, comment), class: "pull-right margin-right",
+        method: :delete, remote: true, data: {confirm: "Are you sure??"} %>
+      <%= link_to "Edit", edit_book_review_comment_path(comment.review.book,
+        comment.review, comment), remote: true, class: "pull-right margin-right" %>
+    <% end %>
+    <hr>
+  </div>
+  <div class="td-comment-content">
+    <i><%= comment.content %></i>
+  </div>
+</div>
